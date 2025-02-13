@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 const jwtMiddleware = (req, res, next) => {
   console.log('Token request!');
 

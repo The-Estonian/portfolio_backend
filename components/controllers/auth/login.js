@@ -2,10 +2,15 @@ import db from '../../database/database.js';
 import { checkPassword } from '../../helpers/encryption.js';
 import jwt from 'jsonwebtoken';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRATION = '1h';
 
 const login = async (req, res) => {
+  console.log('Login request!');
+
   const { email, password } = req.body;
   db.all('SELECT * FROM users where email = ?', [email], async (err, rows) => {
     if (err) {
