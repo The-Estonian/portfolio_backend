@@ -31,4 +31,4 @@ app.post('/logout', logout);
 app.get('/status', jwtMiddleware, status);
 app.get('/alive', alive);
 
-app.listen(8080, '127.0.0.1', () => console.log('Server running on port 8080'));
+app.listen(8080, () => console.log('Server running on port 8080'));
