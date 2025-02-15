@@ -9,7 +9,7 @@ import jwtMiddleware from './components/middleware/jwtMiddleware.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-const allowedOrigins = ['https://the-estonian.com', 'http://localhost:5173'];
+const allowedOrigins = ['https://the-estonian.com'];
 
 const app = express();
 app.use(express.json());
