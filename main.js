@@ -9,15 +9,13 @@ import jwtMiddleware from './components/middleware/jwtMiddleware.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-const allowedOrigins = ['https://the-estonian.com'];
-
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.set('trust proxy', true);
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: 'https://the-estonian.com',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
