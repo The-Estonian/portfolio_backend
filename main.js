@@ -4,6 +4,7 @@ import createUser from './components/controllers/users/createUser.js';
 import login from './components/controllers/auth/login.js';
 import logout from './components/controllers/auth/logout.js';
 import status from './components/controllers/auth/status.js';
+import alive from './components/controllers/auth/alive.js';
 import jwtMiddleware from './components/middleware/jwtMiddleware.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -28,5 +29,6 @@ app.post('/register', createUser);
 app.post('/login', login);
 app.post('/logout', logout);
 app.get('/status', jwtMiddleware, status);
+app.get('/alive', alive);
 
 app.listen(8080, () => console.log('Server running on port 8080'));
