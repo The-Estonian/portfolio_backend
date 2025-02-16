@@ -7,20 +7,17 @@ import status from './components/controllers/auth/status.js';
 import alive from './components/controllers/auth/alive.js';
 import jwtMiddleware from './components/middleware/jwtMiddleware.js';
 import cookieParser from 'cookie-parser';
-import cors from 'cors';
+import limiter from './components/middleware/rateLimitMiddleware.js';
+import cors from './components/middleware/corsMiddleware.js';
+import secretMiddleware from "./components/middleware/secretMiddleware.js"
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(limiter);
 app.set('trust proxy', true);
-// app.use(
-//   cors({
-//     origin: 'https://the-estonian.com',
-//     credentials: true,
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-//   })
-// );
+app.use(cors);
+app.use(secretMiddleware);
 
 app.get('/users', jwtMiddleware, getUsers);
 app.post('/register', createUser);
