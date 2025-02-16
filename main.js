@@ -13,14 +13,14 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.set('trust proxy', true);
-// app.use(
-//   cors({
-//     origin: 'https://the-estonian.com',
-//     credentials: true,
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-//   })
-// );
+app.use(
+  cors({
+    origin: 'https://the-estonian.com',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
 
 app.get('/users', jwtMiddleware, getUsers);
 app.post('/register', createUser);
