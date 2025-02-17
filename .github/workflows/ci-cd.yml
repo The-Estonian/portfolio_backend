@@ -23,5 +23,5 @@ jobs:
             sudo docker image rm estonian/portfolio_backend
             sudo docker pull
             sudo docker build -t estonian/portfolio_backend .
-            sudo docker run -e JWT_SECRET=${{var.JWT_SECRET}} -e NODE_ENV=${{var.NODE_ENV}} -p 8080:8080 -d --name backend estonian/portfolio_backend:latest
+            sudo docker run -e JWT_SECRET=${{secrets.JWT_SECRET}} -e NODE_ENV=${{secrets.NODE_ENV}} -p 8080:8080 -d --name backend estonian/portfolio_backend:latest
 
