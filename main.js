@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(limiter);
 app.set('trust proxy', true);
 app.use(cors);
-app.use(secretMiddleware);
+// app.use(secretMiddleware);
 
 app.get('/users', jwtMiddleware, getUsers);
 app.post('/register', createUser);
