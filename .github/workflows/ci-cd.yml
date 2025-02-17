@@ -1,0 +1,27 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pull-and-switch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd portfolio_backend
+            sudo docker stop backend || true
+            sudo docker rm backend || true
+            sudo docker image rm estonian/portfolio_backend
+            sudo docker pull
+            sudo docker build -t estonian/portfolio_backend .
+            sudo docker run -e JWT_SECRET=${{var.JWT_SECRET}} -e NODE_ENV=${{var.NODE_ENV}} -p 8080:8080 -d --name backend estonian/portfolio_backend:latest
+
