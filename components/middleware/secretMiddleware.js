@@ -7,7 +7,6 @@ const secretMiddleware = (req, res, next) => {
 
   const secretToken = req.get('X-Client-Secret');
 
-  // OUTSOURCE THI
   if (secretToken === API_SECRET) {
     next();
   } else {
