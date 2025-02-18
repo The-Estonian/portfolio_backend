@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(limiter);
-app.set('trust proxy', true);
+// app.set('trust proxy', true);
 app.use(cors);
 app.use(secretMiddleware);
 
