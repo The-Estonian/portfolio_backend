@@ -2,8 +2,8 @@ import db from '../../database/database.js';
 import { hashPassword } from '../../helpers/encryption.js';
 
 const createUser = async (req, res) => {
-  console.log('Register user request!');
-
+  console.log("Register request");
+  
   let hashedPassword;
   const { firstName, lastName, email, password } = req.body;
   if (password) {

@@ -1,6 +1,4 @@
 const logout = (req, res) => {
-  console.log('Logout request!');
-
   res.cookie('token', '', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',

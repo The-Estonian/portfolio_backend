@@ -4,8 +4,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const jwtMiddleware = (req, res, next) => {
-  console.log('Token check request!');
-
   const token = req.cookies.token;
   if (!token) {
     return res

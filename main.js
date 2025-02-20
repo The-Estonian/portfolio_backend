@@ -5,11 +5,12 @@ import login from './components/controllers/auth/login.js';
 import logout from './components/controllers/auth/logout.js';
 import status from './components/controllers/auth/status.js';
 import alive from './components/controllers/auth/alive.js';
+import visitor from './components/controllers/logging/visitor.js';
 import jwtMiddleware from './components/middleware/jwtMiddleware.js';
 import cookieParser from 'cookie-parser';
 import limiter from './components/middleware/rateLimitMiddleware.js';
 import cors from './components/middleware/corsMiddleware.js';
-import secretMiddleware from "./components/middleware/secretMiddleware.js"
+import secretMiddleware from './components/middleware/secretMiddleware.js';
 
 const app = express();
 app.use(express.json());
@@ -25,5 +26,6 @@ app.post('/login', login);
 app.post('/logout', logout);
 app.get('/status', jwtMiddleware, status);
 app.get('/alive', alive);
+app.post('/visitor', visitor);
 
 app.listen(8080, () => console.log('Server running on port 8080'));

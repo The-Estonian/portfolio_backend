@@ -3,8 +3,6 @@ dotenv.config();
 const API_SECRET = process.env.CLIENT_SECRET || 'localhost';
 
 const secretMiddleware = (req, res, next) => {
-  console.log('Secret check!');
-
   const secretToken = req.get('X-Client-Secret');
 
   if (secretToken === API_SECRET) {
