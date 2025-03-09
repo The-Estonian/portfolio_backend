@@ -5,7 +5,7 @@ import login from './components/controllers/auth/login.js';
 import logout from './components/controllers/auth/logout.js';
 import status from './components/controllers/auth/status.js';
 import alive from './components/controllers/auth/alive.js';
-import visitor from './components/controllers/logging/visitor.js';
+import visitor from './components/logging/visitor.js';
 import jwtMiddleware from './components/middleware/jwtMiddleware.js';
 import cookieParser from 'cookie-parser';
 import limiter from './components/middleware/rateLimitMiddleware.js';
@@ -13,6 +13,9 @@ import cors from './components/middleware/corsMiddleware.js';
 import secretMiddleware from './components/middleware/secretMiddleware.js';
 
 const app = express();
+
+app.options('*', cors);
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(limiter);
