@@ -31,6 +31,7 @@ const createTables = (db) => {
           )
       `);
 
+      // skills table
     db.run(`
           CREATE TABLE IF NOT EXISTS skills (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -38,6 +39,7 @@ const createTables = (db) => {
           )
       `);
 
+      // education table
     db.run(`
           CREATE TABLE IF NOT EXISTS education (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,7 +50,7 @@ const createTables = (db) => {
             duration TEXT,
             desc TEXT,
             website TEXT,
-            cert TEXT,
+            cert TEXT
           )
       `);
   });
