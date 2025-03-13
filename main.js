@@ -5,6 +5,8 @@ import login from './components/controllers/auth/login.js';
 import logout from './components/controllers/auth/logout.js';
 import status from './components/controllers/auth/status.js';
 import alive from './components/controllers/auth/alive.js';
+import skills from './components/controllers/cv/skills.js';
+import education from './components/controllers/cv/education.js';
 import visitor from './components/logging/visitor.js';
 import jwtMiddleware from './components/middleware/jwtMiddleware.js';
 import cookieParser from 'cookie-parser';
@@ -24,6 +26,8 @@ app.use(cors);
 app.use(secretMiddleware);
 
 app.get('/users', jwtMiddleware, getUsers);
+app.get('/skills', skills);
+app.get('/education', education);
 app.post('/register', createUser);
 app.post('/login', login);
 app.post('/logout', logout);

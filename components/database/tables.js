@@ -30,6 +30,27 @@ const createTables = (db) => {
             visit_count INTEGER
           )
       `);
+
+    db.run(`
+          CREATE TABLE IF NOT EXISTS skills (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            skill TEXT
+          )
+      `);
+
+    db.run(`
+          CREATE TABLE IF NOT EXISTS education (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT,
+            img TEXT,
+            name TEXT,
+            date TEXT,
+            duration TEXT,
+            desc TEXT,
+            website TEXT,
+            cert TEXT,
+          )
+      `);
   });
 
   console.log('Database tables regenerated successfully!');
