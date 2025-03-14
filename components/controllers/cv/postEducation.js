@@ -4,7 +4,7 @@ const postEducation = (req, res) => {
   console.log('New education post request');
 
   const { title, name, date, duration, desc, website, cert } = req.body;
-  const imgUrl = req.file ? req.file.location : null;
+  const imgUrl = req.imgUrl || null;
 
   if (!title || !imgUrl) {
     return res.status(400).json({ error: 'Title and image are required' });
