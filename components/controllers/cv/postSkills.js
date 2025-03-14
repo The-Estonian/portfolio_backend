@@ -1,6 +1,8 @@
 import db from '../../database/database.js';
 
 const getSkills = (req, res) => {
+  console.log("New skill request");
+  
   const { skills } = req.body;
   const username = req.user.name;
 
