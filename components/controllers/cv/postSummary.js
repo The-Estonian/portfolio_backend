@@ -1,7 +1,7 @@
 import db from '../../database/database.js';
 
 const postSummary = (req, res) => {
-  console.log('New summary request');
+  console.log('New summary post request');
 
   const { summary } = req.body;
   const username = req.user.name;
@@ -14,7 +14,7 @@ const postSummary = (req, res) => {
   }
 
   db.run(
-    'INSERT OR REPLACE INTO summary (id, summary) VALUES (?)',
+    'INSERT OR REPLACE INTO summary (id, summary) VALUES (?, ?)',
     [1, summary],
     function (err) {
       if (err) {
