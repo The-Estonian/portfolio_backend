@@ -1,8 +1,6 @@
 import db from '../../database/database.js';
 
 const postSkills = (req, res) => {
-  console.log("New skill request");
-  
   const { skills } = req.body;
   const username = req.user.name;
 
@@ -12,7 +10,7 @@ const postSkills = (req, res) => {
   if (username !== 'Admin') {
     return res.status(403).json({ error: 'Access denied. Admins only.' });
   }
-  
+
   db.run('INSERT INTO skills (skill) VALUES (?)', [skills], function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });

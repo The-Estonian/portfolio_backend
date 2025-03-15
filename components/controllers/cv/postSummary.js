@@ -1,8 +1,6 @@
 import db from '../../database/database.js';
 
 const postSummary = (req, res) => {
-  console.log('New summary post request');
-
   const { summary } = req.body;
   const username = req.user.name;
 

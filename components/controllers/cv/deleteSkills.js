@@ -1,8 +1,6 @@
 import db from '../../database/database.js';
 
 const deleteSkills = (req, res) => {
-  console.log('New skill delete request');
-
   const { id } = req.body;
   const username = req.user.name;
 

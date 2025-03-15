@@ -27,7 +27,8 @@ const s3Middleware = async (req, res, next) => {
     const processedImage = await sharp(req.file.buffer)
       .resize({ width: 80 })
       .rotate()
-      .jpeg({ quality: 100 })
+      .png({ quality: 100 })
+      .flatten({ background: { r: 255, g: 255, b: 255 } })
       .toBuffer();
 
     const filename = `images/${uuidv4()}.jpg`;

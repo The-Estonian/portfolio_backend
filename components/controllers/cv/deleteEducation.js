@@ -1,11 +1,8 @@
 import db from '../../database/database.js';
 
 const deleteEducation = (req, res) => {
-  console.log('New education delete request');
-
   const { id } = req.body;
   const username = req.user.name;
-console.log(id);
 
   if (!id) {
     return res.status(400).json({ error: 'Education id is required' });
