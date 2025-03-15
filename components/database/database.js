@@ -12,10 +12,7 @@ const db = new sqlite.Database(DB_PATH, (err) => {
     console.error('Error opening database:', err.message);
   } else {
     console.log('Connected to SQLite database.');
-    if (isNewDatabase) {
-      console.log('New database detected. Creating tables...');
-      createTables(db);
-    }
+    createTables(db);
   }
 });
 

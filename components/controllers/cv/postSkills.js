@@ -1,6 +1,6 @@
 import db from '../../database/database.js';
 
-const getSkills = (req, res) => {
+const postSkills = (req, res) => {
   console.log("New skill request");
   
   const { skills } = req.body;
@@ -21,4 +21,4 @@ const getSkills = (req, res) => {
   });
 };
 
-export default getSkills;
+export default postSkills;

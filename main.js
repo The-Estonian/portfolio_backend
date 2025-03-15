@@ -14,6 +14,9 @@ import getEducation from './components/controllers/cv/getEducation.js';
 import postEducation from './components/controllers/cv/postEducation.js';
 import deleteEducation from './components/controllers/cv/deleteEducation.js';
 
+import getSummary from './components/controllers/cv/getSummary.js';
+import postSummary from './components/controllers/cv/postSummary.js';
+
 import visitor from './components/logging/visitor.js';
 import jwtMiddleware from './components/middleware/jwtMiddleware.js';
 import cookieParser from 'cookie-parser';
@@ -48,6 +51,9 @@ app.delete('/deleteSkills', jwtMiddleware, deleteSkills);
 
 app.get('/getEducation', getEducation);
 app.delete('/deleteEducation', jwtMiddleware, deleteEducation);
+
+app.get('/getSummary', getSummary);
+app.post('/postSummary', jwtMiddleware, postSummary);
 
 app.post('/register', createUser);
 app.post('/login', login);

@@ -1,5 +1,6 @@
 const createTables = (db) => {
   db.serialize(() => {
+    console.log('Verifying database tables integrity...');
     // Users table
     db.run(`
         CREATE TABLE IF NOT EXISTS users (
@@ -31,7 +32,7 @@ const createTables = (db) => {
           )
       `);
 
-      // skills table
+    // skills table
     db.run(`
           CREATE TABLE IF NOT EXISTS skills (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,7 +40,7 @@ const createTables = (db) => {
           )
       `);
 
-      // education table
+    // education table
     db.run(`
           CREATE TABLE IF NOT EXISTS education (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -53,9 +54,17 @@ const createTables = (db) => {
             cert TEXT
           )
       `);
+
+    // summary table
+    db.run(`
+          CREATE TABLE IF NOT EXISTS summary (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            summary TEXT
+          )
+      `);
   });
 
-  console.log('Database tables regenerated successfully!');
+  console.log('Database tables verified!');
 };
 
 export default createTables;
