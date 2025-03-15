@@ -9,8 +9,6 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRATION = '1h';
 
 const login = async (req, res) => {
-  console.log('Login request');
-
   const { email, password } = req.body;
   db.all('SELECT * FROM users where email = ?', [email], async (err, rows) => {
     if (err) {
@@ -26,9 +24,13 @@ const login = async (req, res) => {
       let user = rows[0];
       delete user.password;
 
-      const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
-        expiresIn: JWT_EXPIRATION,
-      });
+      const token = jwt.sign(
+        { id: user.id, email: user.email, name: user.firstName },
+        JWT_SECRET,
+        {
+          expiresIn: JWT_EXPIRATION,
+        }
+      );
 
       res.cookie('token', token, {
         httpOnly: true,

@@ -1,8 +1,6 @@
 import db from '../../database/database.js';
 
 const status = (req, res) => {
-  console.log("Status request");
-  
   db.all(
     'SELECT * FROM users where email = ?',
     [req.user.email],

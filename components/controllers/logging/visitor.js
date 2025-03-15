@@ -1,8 +1,6 @@
-import db from '../database/database.js';
+import db from '../../database/database.js';
 
 const visitor = (req, res) => {
-  console.log('Visitor request');
-
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   const userAgent = req.headers['user-agent'];
   const referer = req.body.referer;
