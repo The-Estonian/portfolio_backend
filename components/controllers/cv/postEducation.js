@@ -2,7 +2,6 @@ import db from '../../database/database.js';
 
 const postEducation = (req, res) => {
   console.log('New education post request');
-
   const { title, name, date, duration, desc, website, cert } = req.body;
   const imgUrl = req.imgUrl || null;
 

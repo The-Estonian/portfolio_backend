@@ -26,12 +26,19 @@ const app = express();
 
 app.options('*', cors);
 
-app.use(express.json());
 app.use(cookieParser());
 app.use(limiter);
 // app.set('trust proxy', true);
 app.use(cors);
 app.use(secretMiddleware);
+app.post(
+  '/postEducation',
+  jwtMiddleware,
+  upload.single('img'),
+  s3Middleware,
+  postEducation
+);
+app.use(express.json({ limit: '10mb' }));
 
 app.get('/users', jwtMiddleware, getUsers);
 
@@ -40,13 +47,6 @@ app.post('/postSkills', jwtMiddleware, postSkills);
 app.delete('/deleteSkills', jwtMiddleware, deleteSkills);
 
 app.get('/getEducation', getEducation);
-app.post(
-  '/postEducation',
-  jwtMiddleware,
-  upload.single('img'),
-  s3Middleware,
-  postEducation
-);
 app.delete('/deleteEducation', jwtMiddleware, deleteEducation);
 
 app.post('/register', createUser);

@@ -14,7 +14,10 @@ const s3 = new S3Client({
   },
 });
 
-const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 },
+});
 
 const s3Middleware = async (req, res, next) => {
   if (!req.file) return next();
