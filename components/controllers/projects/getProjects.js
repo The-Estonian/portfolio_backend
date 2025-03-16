@@ -4,6 +4,7 @@ const getProjects = (req, res) => {
   console.log('Project get request');
   db.all('SELECT * FROM projects', [], (err, rows) => {
     if (err) {
+      console.log('getProject error: ', err);
       res.status(500).json({ error: err.message });
       return;
     }

@@ -19,6 +19,7 @@ const postEducation = (req, res) => {
     [title, imgUrl, name, date, duration, desc, website, cert],
     function (err) {
       if (err) {
+        console.log('postEducation error: ', err);
         return res.status(500).json({ error: err.message });
       }
       res.json({ id: this.lastID, registration: 'Success' });

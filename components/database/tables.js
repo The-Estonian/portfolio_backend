@@ -72,7 +72,8 @@ const createTables = (db) => {
             frameworks TEXT,
             languages TEXT,
             database TEXT,
-            img TEXT
+            img TEXT,
+            live TEXT
           )          
       `);
   });

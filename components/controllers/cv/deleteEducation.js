@@ -13,6 +13,7 @@ const deleteEducation = (req, res) => {
 
   db.run('DELETE FROM education WHERE id=?', [id], (err, rows) => {
     if (err) {
+      console.log('deleteEducation error: ', err);
       return res.status(500).json({ error: err.message });
     }
     res.status(200).json({ success: 'success' });

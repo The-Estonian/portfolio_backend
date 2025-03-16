@@ -13,6 +13,7 @@ const postSkills = (req, res) => {
 
   db.run('INSERT INTO skills (skill) VALUES (?)', [skills], function (err) {
     if (err) {
+      console.log('postSkills error: ', err);
       return res.status(500).json({ error: err.message });
     }
     res.json({ id: this.lastID, registration: 'Success' });
