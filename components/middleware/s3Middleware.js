@@ -1,8 +1,9 @@
 import multer from 'multer';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
-import sharp from 'sharp';
+import multerS3 from 'multer-s3';
+import { S3Client } from '@aws-sdk/client-s3';
 import { v4 as uuidv4 } from 'uuid';
 import dotenv from 'dotenv';
+import mime from 'mime-types';
 
 dotenv.config();
 
@@ -15,39 +16,22 @@ const s3 = new S3Client({
 });
 
 const upload = multer({
-  storage: multer.memoryStorage(),
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.S3_BUCKET_NAME,
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    key: (req, file, cb) => {
+      const fileExtension = mime.extension(file.mimetype) || 'bin';
+      cb(null, `images/${uuidv4()}.${fileExtension}`);
+    },
+  }),
   limits: { fileSize: 10 * 1024 * 1024 },
 });
 
-const s3Middleware = async (req, res, next) => {
+const s3Middleware = (req, res, next) => {
   if (!req.file) return next();
-
-  try {
-    // Resize and compress the image
-    const processedImage = await sharp(req.file.buffer)
-      .resize({ width: 80 })
-      .rotate()
-      .png({ quality: 100 })
-      .flatten({ background: { r: 255, g: 255, b: 255 } })
-      .toBuffer();
-
-    const filename = `images/${uuidv4()}.jpg`;
-
-    const uploadParams = {
-      Bucket: process.env.S3_BUCKET_NAME,
-      Key: filename,
-      Body: processedImage,
-      ContentType: 'image/jpeg',
-    };
-
-    await s3.send(new PutObjectCommand(uploadParams));
-    req.imgUrl = `https://${process.env.S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${filename}`;
-
-    next();
-  } catch (err) {
-    console.error('Error processing image:', err);
-    res.status(500).json({ error: 'Failed to process image' });
-  }
+  req.imgUrl = req.file.location;
+  next();
 };
 
 export { upload, s3Middleware };

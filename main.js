@@ -17,6 +17,10 @@ import deleteEducation from './components/controllers/cv/deleteEducation.js';
 import getSummary from './components/controllers/cv/getSummary.js';
 import postSummary from './components/controllers/cv/postSummary.js';
 
+import getProjects from './components/controllers/projects/getProjects.js';
+import postProject from './components/controllers/projects/postProjects.js';
+import deleteProject from './components/controllers/projects/deleteProject.js';
+
 import visitor from './components/controllers/logging/visitor.js';
 import jwtMiddleware from './components/middleware/jwtMiddleware.js';
 import cookieParser from 'cookie-parser';
@@ -41,6 +45,13 @@ app.post(
   s3Middleware,
   postEducation
 );
+app.post(
+  '/postProject',
+  jwtMiddleware,
+  upload.single('img'),
+  s3Middleware,
+  postProject
+);
 app.use(express.json({ limit: '10mb' }));
 
 app.get('/users', jwtMiddleware, getUsers);
@@ -54,6 +65,9 @@ app.delete('/deleteEducation', jwtMiddleware, deleteEducation);
 
 app.get('/getSummary', getSummary);
 app.post('/postSummary', jwtMiddleware, postSummary);
+
+app.get('/getProjects', getProjects);
+app.delete('/deleteProject', jwtMiddleware, deleteProject);
 
 // app.post('/register', createUser);
 app.post('/login', login);

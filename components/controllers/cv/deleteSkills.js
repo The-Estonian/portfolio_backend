@@ -13,6 +13,7 @@ const deleteSkills = (req, res) => {
 
   db.run('DELETE FROM skills WHERE id=?', [id], function (err) {
     if (err) {
+      console.log('deleteSkills error: ', err);
       return res.status(500).json({ error: err.message });
     }
     res.status(200).json({ success: 'success' });

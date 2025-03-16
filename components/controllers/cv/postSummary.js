@@ -16,6 +16,7 @@ const postSummary = (req, res) => {
     [1, summary],
     function (err) {
       if (err) {
+        console.log('postSummary error: ', err);
         return res.status(500).json({ error: err.message });
       }
       res.json({ id: this.lastID, registration: 'Success' });

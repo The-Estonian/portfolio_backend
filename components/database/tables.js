@@ -62,6 +62,20 @@ const createTables = (db) => {
             summary TEXT
           )
       `);
+
+    // projects table
+    db.run(`
+      CREATE TABLE IF NOT EXISTS projects (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            url TEXT,
+            description TEXT,
+            frameworks TEXT,
+            languages TEXT,
+            database TEXT,
+            img TEXT,
+            live TEXT
+          )          
+      `);
   });
 
   console.log('Database tables verified!');
