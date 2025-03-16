@@ -23,5 +23,5 @@ jobs:
             sudo docker image rm estonian/portfolio_backend
             sudo git pull
             sudo docker build -t estonian/portfolio_backend .
-            sudo docker run -e JWT_SECRET=${{secrets.JWT_SECRET}} -e NODE_ENV=${{secrets.NODE_ENV}} -e CLIENT_SECRET=${{secrets.CLIENT_SECRET}} -p 8080:8080 -d --name backend estonian/portfolio_backend
+            sudo docker run -e JWT_SECRET=${{secrets.JWT_SECRET}} -e NODE_ENV=${{secrets.NODE_ENV}} -e CLIENT_SECRET=${{secrets.CLIENT_SECRET}} -e AWS_ACCESS_KEY_ID=${{secrets.AWS_ACCESS_KEY_ID}} -e AWS_SECRET_ACCESS_KEY=${{secrets.AWS_SECRET_ACCESS_KEY}} -e AWS_REGION=${{secrets.AWS_REGION}} -e S3_BUCKET_NAME=${{secrets.S3_BUCKET_NAME}} -p 8080:8080 -d --name backend estonian/portfolio_backend
 
